@@ -47,7 +47,7 @@ Static arts++ library.
 Statyczna biblioteka arts++.
 
 %prep
-%setup  -q -n %{name}-1-1-a8
+%setup -q -n %{name}-1-1-a9
 
 %build
 chmod u+w *.m4 configure
