@@ -8,11 +8,17 @@ License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.caida.org/pub/arts++/arts++-1-1-a9.tar.gz
 # Source0-md5:	210dc2110d0177a98d15c557ee97fe4f
+Patch0:		%{name}-gcc3.patch
+Patch1:		%{name}-nolibs.patch
+Patch2:		%{name}-printf.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool >= 2:1.4d
 BuildRequires:	perl-base
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_includedir	%{_prefix}/include/%{name}
 
 %description
 arts++ is a set of C++ classes and applications for handling ARTS data
@@ -27,6 +33,7 @@ Summary:	Header files and development documentation for arts++
 Summary(pl):	Pliki nag³ówkowe i dokumentacja programisty dla arts++
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files and development documentation for arts++.
@@ -48,6 +55,17 @@ Statyczna biblioteka arts++.
 
 %prep
 %setup -q -n %{name}-1-1-a9
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+
+find . -name Makefile.in | xargs \
+	%{__perl} -pi -e 's/(\@(include|lib|bin|man)dir\@)/\$(DESTDIR)$1/g;
+	s/-m 444/-m 644/g;s/-m 555/-m 755/g'
+
+%{__perl} -pi -e 's/-m 644//' classes/src/Makefile.in
+%{__perl} -pi -e 's/manl/man1/;s/\.l$/\.1/' apps/*/Makefile.in
+%{__perl} -pi -e 's/l LOCAL/1 LOCAL/' apps/*/*.man
 
 %build
 chmod u+w *.m4 configure
@@ -60,15 +78,10 @@ chmod u+w *.m4 configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_includedir}/net \
-	$RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man3}
+install -d $RPM_BUILD_ROOT%{_includedir}
 
-perl -pi -e 's#/usr/include#\$\(includedir\)/%{name}#g' Makefile* */Makefile* */*/Makefile*
-perl -pi -e 's#/usr/lib#\$\(libdir\)#g' Makefile* */Makefile* */*/Makefile*
-perl -pi -e 's#/usr/bin#\$\(bindir\)#g' Makefile* */Makefile* */*/Makefile*
-perl -pi -e 's#/usr/share/man#\$\(mandir\)#g' Makefile* */Makefile* */*/Makefile*
-
-%makeinstall
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -81,13 +94,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_mandir}/man1/*.1*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_includedir}/%{name}
-%{_mandir}/man?/*
+%{_includedir}
 
 %files static
 %defattr(644,root,root,755)
