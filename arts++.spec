@@ -13,6 +13,7 @@ Patch1:		%{name}-nolibs.patch
 Patch2:		%{name}-printf.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	flex
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.4d
 BuildRequires:	perl-base
