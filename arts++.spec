@@ -1,13 +1,13 @@
 Summary:	Library for handling ARTS data files
 Summary(pl):	Biblioteka do obs³ugi plików danych ARTS
 Name:		arts++
-Version:	1.1.a8
+Version:	1.1.a9
 Release:	1
 Epoch:		0
 License:	GPL
 Group:		Libraries
-Source0:	ftp://ftp.caida.org/pub/arts++/arts++-1-1-a8.tar.gz
-# Source0-md5:	3527ba0fa7ab6fb579573969967d1059
+Source0:	ftp://ftp.caida.org/pub/arts++/arts++-1-1-a9.tar.gz
+# Source0-md5:	210dc2110d0177a98d15c557ee97fe4f
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -26,7 +26,7 @@ tworzonych przez oprogramowanie CAIDA (cflowd i skitter).
 Summary:	Header files and development documentation for arts++
 Summary(pl):	Pliki nag³ówkowe i dokumentacja programisty dla arts++
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files and development documentation for arts++.
@@ -38,7 +38,7 @@ Pliki nag³ówkowe i dokumentacja programisty dla arts++.
 Summary:	Static arts++ library
 Summary(pl):	Statyczna biblioteka arts++
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static arts++ library.
