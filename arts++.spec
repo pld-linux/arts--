@@ -19,7 +19,7 @@ files produced by CAIDA software (cflowd and skitter).
 %package devel
 Summary:	Header files and develpment documentation for arts++
 Group:		Development/Libraries
-#Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 Header files and develpment documentation for arts++.
