@@ -1,0 +1,16 @@
+--- arts++-1-1-a9/configure.in.orig	Sat Nov 16 01:46:37 2002
++++ arts++-1-1-a9/configure.in	Fri Feb 13 16:33:24 2004
+@@ -241,10 +241,9 @@
+ AC_TRY_CPP([#include <iomanip>],AC_DEFINE(HAVE_IOMANIP))
+ AC_TRY_CPP([#include <strstream>],AC_DEFINE(HAVE_STRSTREAM))
+ 
+-AC_CHECK_LIB(nsl, inet_ntoa)
+-AC_CHECK_LIB(socket, socket)
+-AC_CHECK_LIB(rpc, xdr_float)
+-AC_CHECK_LIB(rpcsvc, xdr_float)
++AC_SEARCH_LIBS(inet_ntoa, nsl)
++AC_SEARCH_LIBS(socket, socket)
++AC_SEARCH_LIBS(xdr_float, rpc rpcsvc)
+ 
+ dnl  ###  Read some useful macros.
+ 
