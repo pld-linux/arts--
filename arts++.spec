@@ -2,12 +2,14 @@ Summary:	Library for handling ARTS data files
 Name:		arts++
 Version:	1.1.a8
 Release:	1
+Epoch:		0
 License:	GPL
 Group:		Libraries
 Source0:	ftp://ftp.caida.org/pub/arts++/arts++-1-1-a8.tar.gz
-# Source0-md5:	d41d8cd98f00b204e9800998ecf8427e
-BuildRequires:	motif-devel
-BuildRequires:	XFree86-devel
+# Source0-md5:	3527ba0fa7ab6fb579573969967d1059
+BuildRequires:	perl-base
+BuildRequires:	libtool
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -17,7 +19,7 @@ files produced by CAIDA software (cflowd and skitter).
 %package devel
 Summary:	Header files and develpment documentation for arts++
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+#Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 Header files and develpment documentation for arts++.
@@ -34,8 +36,12 @@ Static arts++ library.
 %setup  -q -n %{name}-1-1-a8
 
 %build
-install %{_datadir}/automake/config.* .
-%configure2_13
+chmod u+w *.m4 configure
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%configure \
+	--enable-shared
 %{__make}
 
 %install
@@ -43,8 +49,12 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_includedir}/net \
 	$RPM_BUILD_ROOT{%{_libdir},%{_mandir}/man3}
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+perl -pi -e 's#/usr/include#\$\(includedir\)/%{name}#g' Makefile* */Makefile* */*/Makefile*
+perl -pi -e 's#/usr/lib#\$\(libdir\)#g' Makefile* */Makefile* */*/Makefile*
+perl -pi -e 's#/usr/bin#\$\(bindir\)#g' Makefile* */Makefile* */*/Makefile*
+perl -pi -e 's#/usr/share/man#\$\(mandir\)#g' Makefile* */Makefile* */*/Makefile*
+
+%{makeinstall}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -54,14 +64,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README CHANGES CREDITS
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%doc ChangeLog doc/*.html
+%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_includedir}/*.h
-%{_includedir}/net/*.h
+%{_libdir}/lib*.la
+%{_includedir}/%{name}
 %{_mandir}/man?/*
 
 %files static
