@@ -8,9 +8,8 @@ License:	GPL
 Group:		Libraries
 Source0:	http://www.caida.org/tools/utilities/arts/download/%{name}-%{version}.tar.gz
 # Source0-md5:	bb0afcc952c4cf5864342b68380f9ffc
-Patch0:		%{name}-gcc3.patch
-Patch1:		%{name}-nolibs.patch
-Patch2:		%{name}-printf.patch
+Patch0:		%{name}-nolibs.patch
+Patch1:		%{name}-printf.patch
 URL:		http://www.caida.org/tools/utilities/arts/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -57,9 +56,8 @@ Statyczna biblioteka arts++.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 find . -name Makefile.in | xargs \
 	%{__perl} -pi -e 's/(\@(include|lib|bin|man)dir\@)/\$(DESTDIR)$1/g;
