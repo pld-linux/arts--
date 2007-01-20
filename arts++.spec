@@ -1,16 +1,17 @@
 Summary:	Library for handling ARTS data files
 Summary(pl):	Biblioteka do obs³ugi plików danych ARTS
 Name:		arts++
-Version:	1.1.a9
+Version:	1.1.a12
 Release:	1
 Epoch:		0
 License:	GPL
 Group:		Libraries
-Source0:	ftp://ftp.caida.org/pub/arts++/arts++-1-1-a9.tar.gz
-# Source0-md5:	210dc2110d0177a98d15c557ee97fe4f
+Source0:	http://www.caida.org/tools/utilities/arts/download/%{name}-%{version}.tar.gz
+# Source0-md5:	bb0afcc952c4cf5864342b68380f9ffc
 Patch0:		%{name}-gcc3.patch
 Patch1:		%{name}-nolibs.patch
 Patch2:		%{name}-printf.patch
+URL:		http://www.caida.org/tools/utilities/arts/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
@@ -55,8 +56,8 @@ Static arts++ library.
 Statyczna biblioteka arts++.
 
 %prep
-%setup -q -n %{name}-1-1-a9
-%patch0 -p1
+%setup -q
+#%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
