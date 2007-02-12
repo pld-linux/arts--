@@ -1,5 +1,5 @@
 Summary:	Library for handling ARTS data files
-Summary(pl):	Biblioteka do obs硊gi plik體 danych ARTS
+Summary(pl.UTF-8):   Biblioteka do obs艂ugi plik贸w danych ARTS
 Name:		arts++
 Version:	1.1.a12
 Release:	1
@@ -25,13 +25,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 arts++ is a set of C++ classes and applications for handling ARTS data
 files produced by CAIDA software (cflowd and skitter).
 
-%description -l pl
-arts++ to zbi髍 klas C++ i aplikacji do obs硊gi plik體 danych ARTS
+%description -l pl.UTF-8
+arts++ to zbi贸r klas C++ i aplikacji do obs艂ugi plik贸w danych ARTS
 tworzonych przez oprogramowanie CAIDA (cflowd i skitter).
 
 %package devel
 Summary:	Header files and development documentation for arts++
-Summary(pl):	Pliki nag丑wkowe i dokumentacja programisty dla arts++
+Summary(pl.UTF-8):   Pliki nag艂贸wkowe i dokumentacja programisty dla arts++
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
@@ -39,19 +39,19 @@ Requires:	libstdc++-devel
 %description devel
 Header files and development documentation for arts++.
 
-%description devel -l pl
-Pliki nag丑wkowe i dokumentacja programisty dla arts++.
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe i dokumentacja programisty dla arts++.
 
 %package static
 Summary:	Static arts++ library
-Summary(pl):	Statyczna biblioteka arts++
+Summary(pl.UTF-8):   Statyczna biblioteka arts++
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static arts++ library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka arts++.
 
 %prep
