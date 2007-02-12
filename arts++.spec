@@ -1,5 +1,5 @@
 Summary:	Library for handling ARTS data files
-Summary(pl.UTF-8):   Biblioteka do obsługi plików danych ARTS
+Summary(pl.UTF-8):	Biblioteka do obsługi plików danych ARTS
 Name:		arts++
 Version:	1.1.a12
 Release:	1
@@ -31,7 +31,7 @@ tworzonych przez oprogramowanie CAIDA (cflowd i skitter).
 
 %package devel
 Summary:	Header files and development documentation for arts++
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja programisty dla arts++
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja programisty dla arts++
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libstdc++-devel
@@ -44,7 +44,7 @@ Pliki nagłówkowe i dokumentacja programisty dla arts++.
 
 %package static
 Summary:	Static arts++ library
-Summary(pl.UTF-8):   Statyczna biblioteka arts++
+Summary(pl.UTF-8):	Statyczna biblioteka arts++
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
