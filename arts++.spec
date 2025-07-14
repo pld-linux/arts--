@@ -56,8 +56,8 @@ Statyczna biblioteka arts++.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 find . -name Makefile.in | xargs \
 	%{__perl} -pi -e 's/(\@(include|lib|bin|man)dir\@)/\$(DESTDIR)$1/g;
